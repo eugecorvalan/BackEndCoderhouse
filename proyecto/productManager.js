@@ -1,12 +1,16 @@
  //  || barras para el OR
 
+const fs = require ("fs");
+
+
 // array para almacenar los productos
 
 let products = [] ;
+let pathFile = "./data/products.json"
 
 //funcion con todos los parametros de nuestros productos
 
-const addProduct = (title, description, price, thumbnail, code, stock ) =>{
+const addProduct = async (title, description, price, thumbnail, code, stock ) =>{
 
 
 // creamos el objeto con todas las propiedades antes mencionadas
@@ -45,6 +49,8 @@ if(productExist) {
 
 products.push(newProduct); // agregamos con el push cada nuevo producto al array
 
+
+ await  fs.promises.writeFile(pathFile, JSON.stringify (products));
 } 
 
 
@@ -79,5 +85,5 @@ addProduct("Producto 5", "el quinto producto", 99, "https://media.istockphoto.co
 
 //  getProducts();
 
-getProductById(1);
+ // getProductById(1);
 
